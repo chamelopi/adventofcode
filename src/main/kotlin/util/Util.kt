@@ -1,7 +1,5 @@
 package util
 
-import java.util.function.Consumer
-
 val sep = System.lineSeparator();
 
 fun loadInput(filename: String): String {

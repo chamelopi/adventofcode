@@ -5,9 +5,8 @@ import io.kotest.data.blocking.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
 
-
 class Day2Test : DescribeSpec({
-    describe("Rock Paper Scissors implementation") {
+    describe("rock paper scissors implementation part 1") {
         it("should evaluate to DRAW for equal moves") {
             forAll(
                 row('A', 'X', DRAW + ROCK),
@@ -35,6 +34,38 @@ class Day2Test : DescribeSpec({
                 row('C', 'Y', LOSE + PAPER),
             ) { opp, my, points ->
                 calculateRound(opp, my) shouldBe points
+            }
+        }
+    }
+
+    describe("rock paper scissors implementation part 2") {
+        it("should pick correct move for LOSING outcome") {
+            forAll(
+                row('A', 'X', LOSE + SCISSORS),
+                row('B', 'X', LOSE + ROCK),
+                row('C', 'X', LOSE + PAPER),
+            ) { opp, outcome, points ->
+                calculateRoundAndMove(opp, outcome) shouldBe points
+            }
+        }
+
+        it("should pick the same move for DRAW outcome") {
+            forAll(
+                row('A', 'Y', DRAW + ROCK),
+                row('B', 'Y', DRAW + PAPER),
+                row('C', 'Y', DRAW + SCISSORS),
+            ) { opp, outcome, points ->
+                calculateRoundAndMove(opp, outcome) shouldBe points
+            }
+        }
+
+        it("should pick correct move for WINNING outcome") {
+            forAll(
+                row('A', 'Z', WIN + PAPER),
+                row('B', 'Z', WIN + SCISSORS),
+                row('C', 'Z', WIN + ROCK),
+            ) { opp, outcome, points ->
+                calculateRoundAndMove(opp, outcome) shouldBe points
             }
         }
     }
