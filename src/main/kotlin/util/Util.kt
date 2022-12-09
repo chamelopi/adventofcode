@@ -7,8 +7,8 @@ fun loadInput(filename: String): String {
         ?: throw IllegalArgumentException("could not load input!")
 }
 
-fun <T : Any> T?.unwrap() : T {
-    return this ?: throw IllegalStateException("expected not null")
+fun <T : Any> T?.unwrap(msg: String?) : T {
+    return this ?: throw IllegalStateException(msg ?: "expected not null")
 }
 
 fun <T : Any> List<T>.peek(c: (T) -> Unit) : List<T> {
