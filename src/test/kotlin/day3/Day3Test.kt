@@ -4,6 +4,7 @@ import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.data.blocking.forAll
 import io.kotest.data.row
 import io.kotest.matchers.shouldBe
+import util.sep
 
 class Day3Test : DescribeSpec({
     describe("rucksack implementation") {
@@ -34,6 +35,15 @@ class Day3Test : DescribeSpec({
                 row('v', 22), row('t', 20), row('s', 19),
             ) { item, expectedPriority ->
                 getPriorityOfItem(item) shouldBe expectedPriority
+            }
+        }
+
+        it("should correctly determine the shared item between three rucksacks") {
+            forAll(
+                row(Triple("vJrwpWtwJgWrhcsFMMfFFhFp","jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL","PmmdzqPrVvPwwTWBwg"), 'r'),
+                row(Triple("wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn","ttgJtRGJQctTZtZT", "CrZsJsPPZsGzwwsLwLmpwMDw"), 'Z')
+            ) { rucksacks, commonItem ->
+                getSharedItems(rucksacks) shouldBe commonItem
             }
         }
     }
