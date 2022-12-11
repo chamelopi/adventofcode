@@ -8,9 +8,8 @@ fun main() {
     val input = loadInput("day1-input.txt")
 
     println(input
-        .trim()
         .split(sep.repeat(2))
-        .map { it.split(sep).map(Integer::parseInt).sum() }
+        .map { it.lines().map(Integer::parseInt).sum() }
         .sortedDescending()
         .take(3)
         .sum()

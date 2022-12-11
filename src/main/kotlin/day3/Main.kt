@@ -1,10 +1,9 @@
 package day3
 
 import util.loadInput
-import util.sep
 
 fun getCompartments(rucksack: String): Pair<String, String> {
-    val half = rucksack.length / 2;
+    val half = rucksack.length / 2
     return Pair(rucksack.substring(0, half), rucksack.substring(half))
 }
 
@@ -21,8 +20,7 @@ fun getSharedItems(rucksacks: Triple<String, String, String>): Char {
 }
 
 
-
-val keys = ('a' .. 'z') + ('A' .. 'Z')
+val keys = ('a'..'z') + ('A'..'Z')
 val values = (1..52)
 val itemPriorities = keys.zip(values).toMap()
 
@@ -32,7 +30,7 @@ fun getPriorityOfItem(item: Char): Int {
 
 fun part1(): Int {
     return loadInput("day3-input.txt")
-        .split(sep)
+        .lines()
         .map(::getCompartments)
         .map(::getSharedItems)
         .sumOf { it.map(::getPriorityOfItem).sum() }
@@ -48,8 +46,7 @@ fun <T> toTriple(l: List<T>): Triple<T, T, T> {
 // Every set of three lines is one group, find the item that is in all three rucksacks
 fun part2(): Int {
     return loadInput("day3-input.txt")
-        .trim()
-        .split(sep)
+        .lines()
         .chunked(3)
         .map(::toTriple)
         .map(::getSharedItems)

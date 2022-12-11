@@ -1,15 +1,14 @@
 package day2
 
 import util.loadInput
-import util.sep
 
-const val ROCK = 1;
-const val PAPER = 2;
-const val SCISSORS = 3;
+const val ROCK = 1
+const val PAPER = 2
+const val SCISSORS = 3
 
-const val LOSE = 0;
-const val DRAW = 3;
-const val WIN = 6;
+const val LOSE = 0
+const val DRAW = 3
+const val WIN = 6
 
 val MY_MAPPING = mapOf('X' to ROCK, 'Y' to PAPER, 'Z' to SCISSORS)
 val OPPONENT_MAPPING = mapOf('A' to ROCK, 'B' to PAPER, 'C' to SCISSORS)
@@ -82,8 +81,7 @@ fun calculateRound(opponentChar: Char, myChar: Char): Int {
 
 fun main() {
     println(loadInput("day2-input.txt")
-        .trim()
-        .split(sep)
+        .lines()
         .map { it.split(' ').map { x -> x.toCharArray()[0] } }
         .sumOf { calculateRoundAndMove(it[0], it[1]) })
 }
